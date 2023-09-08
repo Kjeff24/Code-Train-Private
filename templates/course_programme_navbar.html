@@ -1,0 +1,55 @@
+<section class="container-fluid" id="header">
+    <div id="logo">
+      <a href="{% url 'course-page' %}">Codetrain</a>
+    </div>
+    <div>
+      <ul id="navbar">
+        {% with request.resolver_match.url_name as url_name %}
+        <li><a class="{% if url_name == 'course-page' %} active {% endif %}" href="{% url 'course-page' %}">Courses</a></li>
+        <li><a class="{% if url_name == 'course-page-about' %} active {% endif %}" href="{% url 'course-page-about' %}">About Us</a></li>
+        <li><a class="{% if url_name == 'course-page-contact' %} active {% endif %}" href="{% url 'course-page-contact' %}">Contact Us</a></li>
+        {% if url_name == 'programme-page' or url_name == 'quiz-result' %}
+        <li><a class="{% if url_name == 'programme-page' %} active {% endif %}" href="{% url 'programme-page' course.id %}">{{course.title}}</a></li>
+        <li><a href="{% url 'main-view' pk2=course.id %}" target="_blank" class="text-decoration-none"> Quiz</a></li>
+        <li><a class="{% if url_name == 'quiz-result' %} active {% endif %}" href="{% url 'quiz-result' course.id %}">Grade Book</a></li>
+        {% endif %}
+        {% endwith %}
+        <p class="lg-remove">|</p>
+        {% if not user.is_authenticated %}
+        <button class="lg-remove" id="hero">
+          <a href="{% url 'login' %}" class="my-login">Login</a>
+        </button>
+        <button class="lg-remove">
+          <a href="{% url 'signup' %}" class="my-join">Join</a>
+        </button>
+        {% else %}
+        <!-- <li id="lg-remove">
+          <a href="{% url 'cart' %}"
+            ><i class="fas fa-shopping-cart"></i
+            ><span class="cart-count">0</span></a
+          >
+        </li> -->
+        <a id="close" style="cursor: pointer;"><i class="fa fa-times"></i></a>
+        <button class="lg-remove" id="hero">
+          <a href="{% url 'logout' %}" class="my-login">Logout</a>
+        </button>
+        {% endif %}
+      </ul>
+    </div>
+
+    <div id="mobile">
+      {% if not user.is_authenticated %}
+      <button class="hero">
+        <a href="{% url 'login' %}" class="my-min-login">Login</a>
+      </button>
+      <button class="my-signup">
+        <a href="{% url 'signup' %}" class="my-min-join">Join</a>
+      </button>
+      {% else %}
+      <button class="hero">
+        <a href="{% url 'logout' %}" class="my-min-login">Logout</a>
+      </button>
+      {% endif %}
+      <i id="bar" class="fas fa-outdent"></i>
+    </div>
+  </section>

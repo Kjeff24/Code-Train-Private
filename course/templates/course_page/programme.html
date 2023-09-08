@@ -1,0 +1,59 @@
+{% extends "course_programme.html" %} {% load static %} {% block content %}
+<div class="container-fluid">
+  <div class="row intro text-center">
+    <h3>{{course.heading}}</h3>
+    <p style="color: white">Version 1.0.0. {{course.version}}</p>
+    <p style="color: white">{{course.tutor}}</p>
+  </div>
+</div>
+<div class="container-fluid" style="margin-top: 40px">
+  <div class="row mx-auto">
+    <div class="col-md-4">
+      <h3 class="fw-bold">Description</h3>
+      <p>{{course.description}}</p>
+    </div>
+    <div class="col-md-4">
+      <h3 class="fw-bold">This course includes:</h3>
+      <ul>
+        {% for item in curriculum_list %}
+        <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col-md-4">
+      <h3 class="fw-bold">Requirements</h3>
+      <ul>
+        {% for item in requirement_list %}
+        <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+<div>
+  {% if course.title == "Java" %}
+  <div class="container-fluid py-3 mx-auto">
+    <iframe src="https://www.programiz.com/java-programming/online-compiler/" width="100%" height="600"></iframe>
+  </div>
+  {% elif course.title == "Python" %}
+  <div class="container-fluid py-3 mx-auto">
+    <iframe src="https://www.programiz.com/python-programming/online-compiler/" width="100%" height="600"></iframe>
+  </div>
+  {% elif course.title == "C++" %}
+  <div class="container-fluid py-3 mx-auto">
+    <iframe src="https://www.programiz.com/cpp-programming/online-compiler/" width="100%" height="600"></iframe>
+  </div>
+  {% elif course.title == "C#" %}
+  <div class="container-fluid py-3 mx-auto">
+    <iframe src="https://www.programiz.com/csharp-programming/online-compiler/" width="100%" height="600"></iframe>
+  </div>
+  {% elif course.title == "JavaScript" %}
+  <div class="container-fluid py-3 mx-auto">
+    <iframe src="https://www.programiz.com/javascript/online-compiler/" width="100%" height="600"></iframe>
+  </div>
+  {% endif %}
+</div>
+<div class="container-fluid py-3 mx-auto">
+  {% include 'course_page/resource.html' %}
+</div>
+{% endblock %}

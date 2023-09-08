@@ -1,0 +1,36 @@
+{% load static %}
+<section id="header">
+    <div id="logo">
+        <a href="{% url 'home' %}">Codetrain</a>
+    </div>
+
+    <div>
+        <ul id="navbar">
+            {% with request.resolver_match.url_name as url_name %}
+            <li><a class="{% if url_name == 'home' %} active {% endif %}" href="{% url 'home' %}">Home</a></li>
+            <li><a class="{% if url_name == 'courses' %} active {% endif %}" href="{% url 'courses' %}">Courses</a></li>
+            <li><a class="{% if url_name == 'about' %} active {% endif %}" href="{% url 'about' %}">About Us</a></li>
+            <li><a class="{% if url_name == 'contact' %} active {% endif %}" href="{% url 'contact' %}">Contact Us</a></li>
+            {% endwith %}
+            <p class="lg-remove">|</p>
+            <button class="lg-remove" id="hero" >
+                <a href="{% url 'login' %}" class="my-login">Login</a>
+            </button>
+            <a id="close" style="cursor: pointer;"><i class="fa fa-times"></i></a>
+            <button class="lg-remove">
+                <a href="{% url 'signup' %}" class="my-join">Join</a>
+            </button>
+        </ul>
+    </div>
+    
+    <div id="mobile">
+        <button class="hero">
+            <a href="{% url 'login' %}" class="my-min-login">Login</a>
+        </button>
+        <button class="my-signup">
+            <a href="{% url 'signup' %}" class="my-min-join">Join</a>
+        </button>
+        <i id="bar" class="fas fa-outdent"></i>
+    </div>
+
+</section>

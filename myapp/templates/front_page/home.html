@@ -1,0 +1,61 @@
+{% extends "main.html" %} {% load static %}
+{% block content %}
+<section id="main">
+    <div class="main-text">
+        <h1 class="text">Codetrain Online <br> Courses</h1>
+        <p class="text">Advance your career with more than 5,000 courses</p>
+        <a href="{% url 'course-page' %}" style="text-decoration: none; background-color: #1c05f0; color: white;padding: 5px;border-radius: 5px;">Explore Now</a>
+        
+    </div>
+</section>
+
+<section id="course1" class="section-p1">
+    <h2>Featured Courses</h2>
+    <div class="course-container">
+        <div class="pro">
+            <img
+              src="{% static 'img/the-girl-studing.jpg' %}"
+              height="300px"
+              width="300px"
+              alt="product 1"
+            />
+            <div class="des">
+              <h5>content creation</h5>
+              <h4>₵150</h4>
+            </div>
+            <!-- <a href="#"><i class="fas fa-shopping-cart cart"></i></a> -->
+        </div>
+        <div class="pro">
+            <img
+              src="{% static 'img/maik-jonietz-_yMciiStJyY-unsplash.jpg' %}"
+              alt="product 1"
+            />
+            <div class="des">
+              <h5>Graphic</h5>
+              <h4>₵150</h4>
+            </div>
+            <!-- <a href="#"><i class="fas fa-shopping-cart cart"></i></a> -->
+        </div>
+        <div class="pro">
+            <img
+              src="{% static 'img/desola-lanre-ologun-IgUR1iX0mqM-unsplash.jpg' %}"
+              alt="product 1"
+            />
+            <div class="des">
+              <h5>Marketing</h5>
+              <h4>₵150</h4>
+            </div>
+            <!-- <a href="#"><i class="fas fa-shopping-cart cart"></i></a> -->
+        </div>
+        <div class="pro">
+            <img src="{% static 'img/img01.jpg' %}" alt="product 1" />
+            <div class="des">
+              <h5>Graphic Design</h5>
+              <h4>₵150</h4>
+            </div>
+            <!-- <a href="#"><i class="fas fa-shopping-cart cart"></i></a> -->
+        </div>
+    </div>
+</section>
+{% include 'main_footer.html' %}
+{% endblock %}

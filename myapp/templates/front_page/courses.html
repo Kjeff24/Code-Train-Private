@@ -1,0 +1,24 @@
+{% extends "main.html" %} {% load static %}
+{% block content %}
+<section id="course1" class="section-p1">
+  <div class="card-container">
+    {% if courses %}
+    {% for course in courses %}
+    <a href="{% url 'programme-page' course.id %}" class="course-link">
+    <div class="pro">
+        {% if course.course_image %}
+        <img src="{{course.course_image.url}}" alt="product 1" />
+        {% else %}
+        <img src="{% static 'img/img01.jpg' %}" alt="product 1" />
+        {% endif %}
+      <div class="des">
+        <h5 style="text-align: center;">{{course.title}}</h5>
+      </div>
+    </div>
+    </a>
+    {% endfor %}
+    {% endif %}
+  </div>
+  </section>
+{% include 'main_footer.html' %}
+{% endblock %}

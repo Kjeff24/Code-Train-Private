@@ -1,0 +1,50 @@
+{% load static %}
+<footer class="section-p1">
+    <div id="course-list">
+        <div class="course-col">
+            <h4>Contact</h4>
+            <p> <strong>Address:</strong> Nii Aryee Street, Accra, Ghana</p>
+            <p> <strong>Phone:</strong> +233 024 4986 229</p>
+            <p> <strong>Hours:</strong> 10:00am - 6:00pm</p>
+
+            <div class="follow">
+                <h4>Follow Us</h4>
+                <div class="icons">
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-col">
+            <h4>About</h4>
+            <a href="{% url 'about' %}">About Us</a>
+            <a>Privacy Policy</a>
+            <a>Terms and Conditions</a>
+            <a href="{% url 'contact' %}">Contact Us</a>
+        </div>
+
+        <div class="course-col">
+            <h4>My Account</h4>
+            <a href="{% url 'login' %}">Sign In</a>
+            <a>View Cart</a>
+            <a>Help</a>
+        </div>
+
+        <div class="course-col">
+            <h4>Secured Payment Gateway</h4>
+            <a href="{% url 'signup' %}">Sign In</a>
+            <a>View Cart</a>
+            <a>My Wishlist</a>
+            <a>Track My Order</a>
+            <a>Help</a>
+        </div>
+
+    </div>
+
+    <div class="copyright">
+        <p>&copy; 2022 Codetrain</p>
+    </div>
+
+</footer>

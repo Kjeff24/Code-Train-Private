@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Codetrain</title>
+    <link rel="icon" href="{% static 'img/features/f6.png' %}" type="image/icon type">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body id="signupbody">
+    <section class="sign-up">
+      <h1>Sign Up</h1>
+      {% if messages %}
+        {% for message in messages %}
+        <h5 class="ui {{message.tags}} message mail-message" style="color: red; text-align: center; padding: 10px;">
+        {{message}}
+        </h5>
+        {% endfor %}
+      {% endif %}
+      <form method="POST">
+        {% csrf_token %}
+        <label for="fullname">Full Name:</label>
+        {{form.fullname}}
+        <label for="email">Email:</label>
+        {{form.email}}
+        <label for="phone">Phone:</label>
+        {{form.phone_number}}
+        <label for="password">Password:</label>
+        {{form.password1}}
+        <label for="confirm-password">Confirm Password:</label>
+        {{form.password2}}
+        <input
+          type="submit"
+        />
+
+        <p>Already have an account? <a href="{% url 'login' %}" class="already">Log In</a></p>
+      </form>
+    </section>
+    
+    <script src="{% static 'js/bootstrap-5.0.2-dist/js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    
+  </body>
+</html>

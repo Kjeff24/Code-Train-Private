@@ -1,0 +1,1 @@
+web: gunicorn CodeTrain.wsgi --log-file -

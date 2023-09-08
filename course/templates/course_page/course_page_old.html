@@ -1,0 +1,20 @@
+{% extends "course_programme.html" %} {% load static %} {% block content %}
+<section id="main">
+    <div class="main-text">
+        <h1 class="text">Codetrain Online <br> Courses</h1>
+        <p class="text">Advance your career with more than 5,000 courses</p>
+        <h3>Courses/Programmes Offered</h3>
+        {% if courses %}
+        <ul>
+            {% for course in courses %}
+            <li style="padding: 5px;">
+                <a href="{% url 'programme-page' course.id %}" class="course-link">{{course.title}}</a>
+            </li>
+            {% endfor %}
+
+        </ul>
+        {% endif %}
+        
+    </div>
+</section>
+{% endblock %}

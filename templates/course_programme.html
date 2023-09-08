@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{% static 'bootstrap-5.0.2-dist/css/bootstrap.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'bootstrap-5.0.2-dist/css/bootstrap.min.css' %}"
+    />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <title>{{course.title}}</title>
+    <link rel="icon" href="{% static 'img/features/f6.png' %}" type="image/icon type">
+  </head>
+  <body>
+    {% include 'course_programme_navbar.html' %}
+    {% block content %}
+    {% endblock %}
+
+    <script src="{% static 'bootstrap-5.0.2-dist/js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script>
+      // Display detailes in view
+      const view = document.querySelectorAll(".view");
+            const viewDetails = document.querySelectorAll(".view-details");
+
+            view.forEach((link, index) => {
+                link.addEventListener("click", function () {
+                    viewDetails[index].classList.toggle("active");
+                });
+            });
+    </script>
+  </body>
+</html>

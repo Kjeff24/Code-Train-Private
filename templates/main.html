@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codetrain</title>
+    <link rel="icon" href="{% static 'img/features/f6.png' %}" type="image/icon type">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <style>
+        .card-container {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            gap: 2rem; /* Adjust this value as needed */
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+            /* Media query for larger screens to change flex direction */
+        @media (min-width: 768px) {
+        .card-container {
+            flex-direction: row;
+        }
+        }
+    </style>
+</head>
+<body id="homebody">
+
+    {% include 'main_navbar.html' %}
+    {% block content %}
+    {% endblock %}
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

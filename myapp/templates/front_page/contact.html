@@ -1,0 +1,75 @@
+{% extends "main.html" %} {% load static %} {% block content %}
+<section class="contact-container">
+  <div class="contact-box">
+    <div class="contact-left">
+      <p>
+        If you have any questions or comments, please feel free to get in touch
+        with us using the contact form below. We'll do our best to respond as
+        quickly as possible.
+      </p>
+    </div>
+
+    <div class="contact-right">
+      <form method="POST">
+        {% csrf_token %}
+        <h3>Get In Touch With Us</h3>
+        {% if messages %}
+        {% for message in messages %}
+        <h5 class="ui {{message.tags}} message mail-message" style="color: red; text-align: center; padding: 10px; background-color: beige;">
+			  {{message}}
+        </h5>
+        {% endfor %}
+        {% endif %}
+        <div class="input-row">
+          <div class="input-group">
+            <label>First Name</label>
+            <input
+              type="text"
+              id="firstname"
+              name="firstname"
+              placeholder="Enter your first name"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label>Other Names</label>
+            <input
+              type="text"
+              id="othernames"
+              name="othernames"
+              placeholder="Enter your other names"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="input-space">
+          <label>Email</label>
+          <input
+            type="text"
+            id="email"
+            name="email"
+            placeholder="Enter you email"
+            required
+          />
+        </div>
+        <div class="input-space">
+          <label for="phone">Phone</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="Enter your phone number"
+            required
+          />
+        </div>
+
+        <label>Message</label>
+        <textarea rows="10" placeholder="Type Your Message Here" name="textarea-message"></textarea>
+
+        <button type="submit">SEND</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}
