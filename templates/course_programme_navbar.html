@@ -6,12 +6,15 @@
       <ul id="navbar">
         {% with request.resolver_match.url_name as url_name %}
         <li><a class="{% if url_name == 'course-page' %} active {% endif %}" href="{% url 'course-page' %}">Courses</a></li>
-        <li><a class="{% if url_name == 'course-page-about' %} active {% endif %}" href="{% url 'course-page-about' %}">About Us</a></li>
-        <li><a class="{% if url_name == 'course-page-contact' %} active {% endif %}" href="{% url 'course-page-contact' %}">Contact Us</a></li>
-        {% if url_name == 'programme-page' or url_name == 'quiz-result' %}
+        {% if url_name == 'course-page' or url_name == 'course-page-about' or url_name == 'course-page-contact' %}
+        <li><a class="{% if url_name == 'course-page-about' %} active {% endif %}" href="{% url 'course-page-about' %}" style="white-space: nowrap;">About Us</a></li>
+        <li><a class="{% if url_name == 'course-page-contact' %} active {% endif %}" href="{% url 'course-page-contact' %}" style="white-space: nowrap;">Contact Us</a></li>
+        {% endif %}
+        {% if url_name == 'programme-page' or url_name == 'quiz-result' or url_name == 'resource-page'%}
         <li><a class="{% if url_name == 'programme-page' %} active {% endif %}" href="{% url 'programme-page' course.id %}">{{course.title}}</a></li>
+        <li><a class="{% if url_name == 'resource-page' %} active {% endif %}" href="{% url 'resource-page' course.id %}">Resources</a></li>
         <li><a href="{% url 'main-view' pk2=course.id %}" target="_blank" class="text-decoration-none"> Quiz</a></li>
-        <li><a class="{% if url_name == 'quiz-result' %} active {% endif %}" href="{% url 'quiz-result' course.id %}">Grade Book</a></li>
+        <li><a class="{% if url_name == 'quiz-result' %} active {% endif %}" href="{% url 'quiz-result' course.id %}" style="white-space: nowrap;">Grade Book</a></li>
         {% endif %}
         {% endwith %}
         <p class="lg-remove">|</p>

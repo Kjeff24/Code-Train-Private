@@ -50,9 +50,27 @@ def programme(request, pk):
     q = request.GET.get('q', '')
     page = "programme_page"
     course = Course.objects.get(pk=pk)
+    
+    if request.method == 'POST':
+        course.course_completed = True
+        course.save()
+        return redirect('main-view', pk2=course.id)
+    
     curriculum_list = json.loads(course.curriculum.replace("'", "\""))
     requirement_list = json.loads(course.requirements.replace("'", "\""))
-    
+
+    context ={ 
+        'page': page,
+        'course':course, 
+        'curriculum_list': curriculum_list,
+        'requirement_list': requirement_list,
+        }
+    return render(request, 'course_page/programme.html', context)
+
+@login_required(login_url='login')
+def resourcePage(request, pk):
+    q = request.GET.get('q', '')
+    course = Course.objects.get(pk=pk)
     files_by_type = {
         'pdf': 'pdf_files',
         'image': 'image_files',
@@ -75,14 +93,10 @@ def programme(request, pk):
             course=course
         ).order_by('-updated')
     
-    context ={ 
-        'page': page,
+    context = {
         'course':course, 
-        **resources,
-        'curriculum_list': curriculum_list,
-        'requirement_list': requirement_list,
-        }
-    return render(request, 'course_page/programme.html', context)
+        **resources,}
+    return render(request, 'course_page/resource.html', context)
 
 # Preview pdf
 def previewPdf(request, pk):

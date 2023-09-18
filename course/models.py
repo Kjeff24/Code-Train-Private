@@ -3,13 +3,15 @@ from django.db import models
 # Create your models here.
 class Course(models.Model):
     title = models.CharField(max_length=255, unique=True)
-    course_image = models.ImageField(upload_to='images/', null=True)
+    course_image = models.ImageField(upload_to='images/', null=True, blank=True)
     heading = models.TextField()
     version = models.CharField(max_length=50)
     tutor = models.CharField(max_length=255)
     description = models.TextField()
     requirements = models.TextField()  # Storing requirements as comma-separated values
-    curriculum = models.TextField()  # Storing curriculum as comma-separated values
+    curriculum = models.TextField() 
+    compiler = models.TextField(null=True, blank=True)# Storing curriculum as comma-separated values
+    course_completed = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
