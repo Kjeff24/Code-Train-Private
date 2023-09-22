@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Course, Resource
+from .models import Course, Resource, UserCourse
 import json
 from django.db.models import Q
 from django.http import StreamingHttpResponse
@@ -50,10 +50,12 @@ def programme(request, pk):
     q = request.GET.get('q', '')
     page = "programme_page"
     course = Course.objects.get(pk=pk)
+    user_course, created = UserCourse.objects.get_or_create(user=request.user, course=course)
     
     if request.method == 'POST':
-        course.course_completed = True
-        course.save()
+        # Set the 'course_completed' field to True
+        user_course.course_completed = True
+        user_course.save()
         return redirect('main-view', pk2=course.id)
     
     curriculum_list = json.loads(course.curriculum.replace("'", "\""))
@@ -64,6 +66,7 @@ def programme(request, pk):
         'course':course, 
         'curriculum_list': curriculum_list,
         'requirement_list': requirement_list,
+        'course_completed': user_course.course_completed,
         }
     return render(request, 'course_page/programme.html', context)
 
@@ -71,6 +74,14 @@ def programme(request, pk):
 def resourcePage(request, pk):
     q = request.GET.get('q', '')
     course = Course.objects.get(pk=pk)
+    user_course, created = UserCourse.objects.get_or_create(user=request.user, course=course)
+    
+    if request.method == 'POST':
+        # Set the 'course_completed' field to True
+        user_course.course_completed = True
+        user_course.save()
+        return redirect('main-view', pk2=course.id)
+    
     files_by_type = {
         'pdf': 'pdf_files',
         'image': 'image_files',
@@ -95,7 +106,9 @@ def resourcePage(request, pk):
     
     context = {
         'course':course, 
-        **resources,}
+        **resources,
+        'course_completed': user_course.course_completed,
+        }
     return render(request, 'course_page/resource.html', context)
 
 # Preview pdf

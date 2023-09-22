@@ -2,14 +2,14 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.http import JsonResponse
 from .models import Quiz, Question, Answer, Result
-from course.models import Course
+from course.models import Course, UserCourse
 from quiz.models import Result
 from django.db.models import F, Q, Count
 
 
 def quiz_list_view(request, pk2):
-    employee = request.user
     course = Course.objects.get(id=pk2)
+    user_course = UserCourse.objects.get(user=request.user, course=course)
     
     # Filter quizzes that the user has not attempted more than quiz_chances times
     quizzes = Quiz.objects.filter(
@@ -28,6 +28,7 @@ def quiz_list_view(request, pk2):
     context = {
         'quizzes': filtered_quizzes,
         'course': course,
+        'course_completed': user_course.course_completed,
     }
     
     return render(request, 'quiz/main.html', context)

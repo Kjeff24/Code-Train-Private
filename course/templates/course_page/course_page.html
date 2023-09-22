@@ -3,7 +3,7 @@
   <div class="d-flex flex-column flex-md-row mt-3 gap-2 justify-content-between align-items-center">
     {% if courses %}
     {% for course in courses %}
-    <a href="{% url 'programme-page' course.id %}" class="course-link">
+    <a href="{% url 'resource-page' course.id %}" class="course-link">
     <div class="pro">
         {% if course.course_image %}
         <img src="{{course.course_image.url}}" alt="product 1" />

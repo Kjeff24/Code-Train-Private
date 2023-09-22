@@ -1,5 +1,5 @@
 from django.db import models
-
+from myapp.models import User
 # Create your models here.
 class Course(models.Model):
     title = models.CharField(max_length=255, unique=True)
@@ -11,7 +11,6 @@ class Course(models.Model):
     requirements = models.TextField()  # Storing requirements as comma-separated values
     curriculum = models.TextField() 
     compiler = models.TextField(null=True, blank=True)# Storing curriculum as comma-separated values
-    course_completed = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
@@ -38,3 +37,12 @@ class Resource(models.Model):
 
     def __str__(self):
         return f"{self.name}-{self.course}-{self.file_type}"
+
+
+class UserCourse(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course_completed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.user} - {self.course.title}"

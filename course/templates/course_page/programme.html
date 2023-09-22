@@ -35,7 +35,7 @@
     {{course.compiler | safe }}
   </div>
 </div>
-{% if not course.course_completed %}
+{% if not course_completed %}
 <form method="post">
   {% csrf_token %}
   <button class="float-end" type="submit">Click to  complete course</button>
